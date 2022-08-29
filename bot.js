@@ -11,12 +11,14 @@ if (!process.env.DISCORD_BOT_TOKEN) {
 }
 
 // Initialize the Discord.JS Client.
-const client = new Client({ intents: [
-  GatewayIntentBits.Guilds,
-  GatewayIntentBits.GuildMessages,
-  GatewayIntentBits.MessageContent,
-  GatewayIntentBits.GuildVoiceStates
-] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
+});
 
 // Initiate the Manager with some options and listen to some events.
 client.manager = new Manager({
@@ -27,7 +29,7 @@ client.manager = new Manager({
       host: process.env.LL_HOST, // Optional if Lavalink is local
       port: Number(process.env.LL_PORT), // Optional if Lavalink is set to default
       password: process.env.LL_PASSWORD, // Optional if Lavalink is set to default
-      secure: Boolean(process.env.LL_SECURE)
+      secure: Boolean(process.env.LL_SECURE),
     },
   ],
   // A send method to send data to the Discord WebSocket using your library.
@@ -37,17 +39,21 @@ client.manager = new Manager({
     if (guild) guild.shard.send(payload);
   },
 })
-  .on('nodeConnect', node => console.log(`Node ${node.options.identifier} connected`))
-  .on('nodeError', (node, error) => console.log(`Node ${node.options.identifier} had an error: ${error.message}`))
+  .on('nodeConnect', (node) =>
+    console.log(`Node ${node.options.identifier} connected`)
+  )
+  .on('nodeError', (node, error) =>
+    console.log(
+      `Node ${node.options.identifier} had an error: ${error.message}`
+    )
+  )
   .on('trackStart', (player, track) => {
     client.channels.cache
       .get(player.textChannel)
       .send(`Now playing: ${track.title}`);
   })
   .on('queueEnd', (player) => {
-    client.channels.cache
-      .get(player.textChannel)
-      .send('Queue has ended.');
+    client.channels.cache.get(player.textChannel).send('Queue has ended.');
 
     player.destroy();
   });
@@ -63,11 +69,12 @@ client.once('ready', () => {
 // Here we send voice data to lavalink whenever the bot joins a voice channel to play audio in the channel.
 client.on('raw', (d) => client.manager.updateVoiceState(d));
 
-client.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async (interaction) => {
+  console.log('INTERACTION', interaction.member);
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === 'play') {
-    await interaction.reply('Pong!');
+    await play(client, interaction);
   }
 });
 client.on('messageCreate', async (message) => {
