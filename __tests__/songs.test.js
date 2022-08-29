@@ -8,15 +8,29 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('Song.findByTitle should return an array of songs with title roughly matching parameter', async () => {
-    const songs = await Song.findByTitle('Light');
+  it('Song.getByTitle should return an array of songs with title roughly matching parameter', async () => {
+    const songs = await Song.getByTitle('Light');
     expect(songs).toEqual([
       {
         id: expect.any(String),
         title: 'Little Lights',
-        artist: 'Punch Brothers',
+        author: 'Punch Brothers',
+        uri: expect.any(String),
       },
     ]);
+  });
+  it('insert adds new song to songs table', async () => {
+    const newSong = {
+      title: 'Oh Happy Day',
+      author: 'A Great Band',
+      uri: 'youtube.com/asong',
+    };
+
+    const songs = await Song.insert(newSong);
+    expect(songs).toEqual({
+      id: expect.any(String),
+      ...newSong,
+    });
   });
   afterAll(() => {
     pool.end();
