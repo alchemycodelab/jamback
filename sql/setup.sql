@@ -35,12 +35,12 @@ INSERT INTO playlists (name) VALUES
 ('Rainy Mix');
 
 INSERT INTO songs (title, author, uri) VALUES
-('Good Times', 'Jungle', ''),
-('Oooh Child', 'The Five Stairsteps', ''),
-('Monday Morning', 'Death Cab For Cutie', ''),
-('Esmerelda', 'Ben Howard', ''),
-('Naked As We Came', 'Iron & Wine', ''),
-('Little Lights', 'Punch Brothers','');
+('Good Times', 'Jungle', 'https://www.youtube.com/watch?v=gpwYTeRSgc8'),
+('Oooh Child', 'The Five Stairsteps', 'https://www.youtube.com/watch?v=dguz0IsCuKU'),
+('Monday Morning', 'Death Cab For Cutie', 'https://www.youtube.com/watch?v=FlyztL4o1lc'),
+('Esmerelda', 'Ben Howard', 'https://www.youtube.com/watch?v=UYUKsRL-YBM'),
+('Naked As We Came', 'Iron & Wine', 'https://www.youtube.com/watch?v=Nd-A-iiPoLg'),
+('Little Lights', 'Punch Brothers','https://www.youtube.com/watch?v=WyVgR8N7JcE');
 
 INSERT INTO playlists_songs (playlist_id, song_id) VALUES
 (1, 1),
