@@ -38,6 +38,18 @@ const commands = [
         .setDescription('Song Title and/or Artist')
         .setRequired(true)
     ),
+  new SlashCommandBuilder()
+    .setName('playlist')
+    .setDescription('Interact with saved playlists')
+    .addSubcommand((subcommand) => 
+      subcommand 
+        .setName('create')
+        .setDescription('creates a new playlist')
+        .addStringOption((option) => 
+          option
+            .setName('name')
+            .setDescription('The name of your new playlist')
+            .setRequired(true)))
 
   // {
   //   name: 'myplay',

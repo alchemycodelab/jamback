@@ -5,6 +5,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const { Manager } = require('erela.js');
 const play = require('./lib/commands/play');
 const search = require('./lib/commands/search');
+const playlist = require('./lib/commands/playlist');
 
 if (!process.env.DISCORD_BOT_TOKEN) {
   console.log('Please remember to add your token to the .env file');
@@ -79,6 +80,9 @@ client.on('interactionCreate', async (interaction) => {
       break;
     case 'search':
       await search(client, interaction);
+      break;
+    case 'playlist':
+      await playlist(client, interaction);
       break;
   }
 });
