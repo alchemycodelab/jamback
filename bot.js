@@ -71,7 +71,6 @@ client.once('ready', () => {
 client.on('raw', (d) => client.manager.updateVoiceState(d));
 
 client.on('interactionCreate', async (interaction) => {
-  console.log('INTERACTION', interaction.member);
   if (!interaction.isChatInputCommand()) return;
 
   switch (interaction.commandName) {
