@@ -11,7 +11,8 @@ CREATE TABLE playlists (
 CREATE TABLE songs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title VARCHAR NOT NULL,
-  artist VARCHAR NOT NULL
+  author VARCHAR NOT NULL,
+  uri VARCHAR NOT NULL
 );
 
 CREATE TABLE playlists_songs (
@@ -33,13 +34,13 @@ INSERT INTO playlists (name) VALUES
 ('Sunshine Mix'), 
 ('Rainy Mix');
 
-INSERT INTO songs (title, artist) VALUES
-('Good Times', 'Jungle'),
-('Oooh Child', 'The Five Stairsteps'),
-('Monday Morning', 'Death Cab For Cutie'),
-('Esmerelda', 'Ben Howard'),
-('Naked As We Came', 'Iron & Wine'),
-('Little Lights', 'Punch Brothers');
+INSERT INTO songs (title, author, uri) VALUES
+('Good Times', 'Jungle', ''),
+('Oooh Child', 'The Five Stairsteps', ''),
+('Monday Morning', 'Death Cab For Cutie', ''),
+('Esmerelda', 'Ben Howard', ''),
+('Naked As We Came', 'Iron & Wine', ''),
+('Little Lights', 'Punch Brothers','');
 
 INSERT INTO playlists_songs (playlist_id, song_id) VALUES
 (1, 1),
