@@ -6,7 +6,32 @@ const { REST, Routes } = require('discord.js');
 const commands = [
   new SlashCommandBuilder()
     .setName('play')
-    .setDescription('Searches lavalink for your song')
+    .setDescription('plays a song')
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('search')
+        .setDescription('searches for a song and plays the first result')
+        .addStringOption((option) =>
+          option
+            .setName('query')
+            .setDescription('Song Title and/or Artist')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('result')
+        .setDescription('plays a song from a search result by id')
+        .addStringOption((option) =>
+          option
+            .setName('id')
+            .setDescription('id from a previous search result')
+            .setRequired(true)
+        )
+    ),
+  new SlashCommandBuilder()
+    .setName('search')
+    .setDescription('searches for your song and gives the list of results')
     .addStringOption((option) =>
       option
         .setName('query')
