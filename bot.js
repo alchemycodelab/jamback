@@ -4,6 +4,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { Manager } = require('erela.js');
 const play = require('./lib/commands/play');
+const search = require('./lib/commands/search');
 
 if (!process.env.DISCORD_BOT_TOKEN) {
   console.log('Please remember to add your token to the .env file');
@@ -73,13 +74,13 @@ client.on('interactionCreate', async (interaction) => {
   console.log('INTERACTION', interaction.member);
   if (!interaction.isChatInputCommand()) return;
 
-  if (interaction.commandName === 'play') {
-    await play(client, interaction);
-  }
-});
-client.on('messageCreate', async (message) => {
-  if (message.content.startsWith('!play')) {
-    await play(client, message);
+  switch (interaction.commandName) {
+    case 'play':
+      await play(client, interaction);
+      break;
+    case 'search':
+      await search(client, interaction);
+      break;
   }
 });
 
