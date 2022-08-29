@@ -15,6 +15,16 @@ describe('backend-express-template routes', () => {
       ...playlist
     });
   });
+  it('delete playlist should remove a playlist by name', async () => {
+    const playlistToDelete = 'Rainy Mix';
+    const resp = await Playlist.delete(playlistToDelete);
+
+    expect(resp).toEqual({
+      id: expect.any(String),
+      name: playlistToDelete,
+      songs: expect.any(Array)
+    });
+  });
   afterAll(() => {
     pool.end();
   });

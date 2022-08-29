@@ -31,16 +31,16 @@ const commands = [
     ),
   new SlashCommandBuilder()
     .setName('search')
-    .setDescription('searches for your song and gives the list of results')
+    .setDescription('Searches for your song and gives the list of results')
     .addStringOption((option) =>
       option
         .setName('query')
-        .setDescription('Song Title and/or Artist')
+        .setDescription('song Title and/or Artist')
         .setRequired(true)
     ),
   new SlashCommandBuilder()
     .setName('playlist')
-    .setDescription('Interact with saved playlists')
+    .setDescription('interact with saved playlists')
     .addSubcommand((subcommand) => 
       subcommand 
         .setName('create')
@@ -48,8 +48,20 @@ const commands = [
         .addStringOption((option) => 
           option
             .setName('name')
-            .setDescription('The name of your new playlist')
-            .setRequired(true)))
+            .setDescription('the name of your new playlist')
+            .setRequired(true))
+    )
+    .addSubcommand((subcommand) => 
+      subcommand
+        .setName('delete')
+        .setDescription('deletes a playlist by name')
+        .addStringOption((option) => 
+          option
+            .setName('name')
+            .setDescription('name of the playlist you want deleted')
+            .setRequired(true))
+    )
+
 
   // {
   //   name: 'myplay',

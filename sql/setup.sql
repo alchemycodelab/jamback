@@ -18,8 +18,8 @@ CREATE TABLE playlists_songs (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     playlist_id BIGINT,
     song_id BIGINT,
-    FOREIGN KEY (playlist_id) REFERENCES playlists(id),
-    FOREIGN KEY(song_id) REFERENCES songs(id)
+    FOREIGN KEY (playlist_id) REFERENCES playlists(id) ON DELETE CASCADE,
+    FOREIGN KEY(song_id) REFERENCES songs(id) ON DELETE CASCADE
 );
 
 CREATE TABLE search_results (
