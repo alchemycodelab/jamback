@@ -1,6 +1,4 @@
 /* eslint-disable no-console */
-// To install Discord.JS and Erela.JS, run:
-// npm install discord.js erela.js
 const { Client, GatewayIntentBits } = require('discord.js');
 const { Manager } = require('erela.js');
 const play = require('./lib/commands/play');
@@ -24,13 +22,11 @@ const client = new Client({
 
 // Initiate the Manager with some options and listen to some events.
 client.manager = new Manager({
-  // Pass an array of node. Note: You do not need to pass any if you are using the default values (ones shown below).
   nodes: [
-    // If you pass a object like so the "host" property is required
     {
-      host: process.env.LL_HOST, // Optional if Lavalink is local
-      port: Number(process.env.LL_PORT), // Optional if Lavalink is set to default
-      password: process.env.LL_PASSWORD, // Optional if Lavalink is set to default
+      host: process.env.LL_HOST,
+      port: Number(process.env.LL_PORT),
+      password: process.env.LL_PASSWORD,
       secure: Boolean(process.env.LL_SECURE),
     },
   ],
@@ -40,25 +36,29 @@ client.manager = new Manager({
     const guild = client.guilds.cache.get(id);
     if (guild) guild.shard.send(payload);
   },
-})
-  .on('nodeConnect', (node) =>
-    console.log(`Node ${node.options.identifier} connected`)
-  )
-  .on('nodeError', (node, error) =>
-    console.log(
-      `Node ${node.options.identifier} had an error: ${error.message}`
-    )
-  )
-  .on('trackStart', (player, track) => {
-    client.channels.cache
-      .get(player.textChannel)
-      .send(`Now playing: ${track.title}`);
-  })
-  .on('queueEnd', (player) => {
-    client.channels.cache.get(player.textChannel).send('Queue has ended.');
+});
 
-    player.destroy();
-  });
+client.manager.on('nodeConnect', (node) =>
+  console.log(`Node ${node.options.identifier} connected`)
+);
+
+client.manager.on('nodeError', (node, error) =>
+  console.log(
+    `Node ${node.options.identifier} had an error: ${error.message}`
+  )
+);
+
+client.manager.on('trackStart', (player, track) => {
+  client.channels.cache
+    .get(player.textChannel)
+    .send(`Now playing: ${track.title}`);
+});
+
+client.manager.on('queueEnd', (player) => {
+  client.channels.cache.get(player.textChannel).send('Queue has ended.');
+
+  player.destroy();
+});
 
 // Ready event fires when the Discord.JS client is ready.
 // Use EventEmitter#once() so it only fires once.
