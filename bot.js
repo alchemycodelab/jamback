@@ -75,19 +75,27 @@ client.on('raw', (d) => client.manager.updateVoiceState(d));
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  switch (interaction.commandName) {
-    case 'play':
-      play(client, interaction);
-      break;
-    case 'search':
-      search(client, interaction);
-      break;
-    case 'playlist':
-      playlist(client, interaction);
-      break;
-    case 'queue':
-      queue(client, interaction);
-      break;
+  try {
+    switch (interaction.commandName) {
+      case 'play':
+        play(client, interaction);
+        break;
+      case 'search':
+        search(client, interaction);
+        break;
+      case 'playlist':
+        playlist(client, interaction);
+        break;
+      case 'queue':
+        queue(client, interaction);
+        break;
+    }
+  } catch (error) {
+    console.error(error);
+    interaction.reply({
+      content: 'An unexpected error occurred. Please try again.',
+      ephemeral: true
+    });
   }
 });
 
