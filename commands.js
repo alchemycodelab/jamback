@@ -31,12 +31,82 @@ const commands = [
     ),
   new SlashCommandBuilder()
     .setName('search')
-    .setDescription('searches for your song and gives the list of results')
+    .setDescription('Searches for your song and gives the list of results')
     .addStringOption((option) =>
       option
         .setName('query')
-        .setDescription('Song Title and/or Artist')
+        .setDescription('song Title and/or Artist')
         .setRequired(true)
+    ),
+  new SlashCommandBuilder()
+    .setName('playlist')
+    .setDescription('interact with saved playlists')
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('create')
+        .setDescription('creates a new playlist')
+        .addStringOption((option) =>
+          option
+            .setName('name')
+            .setDescription('the name of your new playlist')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('delete')
+        .setDescription('deletes a playlist by name')
+        .addStringOption((option) =>
+          option
+            .setName('name')
+            .setDescription('name of the playlist you want deleted')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('add-song')
+        .setDescription('adds song to playlist by id')
+        .addStringOption((option) =>
+          option
+            .setName('playlist_name')
+            .setDescription('name of playlist')
+            .setRequired(true)
+        )
+        .addStringOption((option) =>
+          option
+            .setName('song_id')
+            .setDescription('id of song to be added')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('remove-song')
+        .setDescription('remove a song from a playlist by id')
+        .addStringOption((option) =>
+          option
+            .setName('playlist_name')
+            .setDescription('name of playlist')
+            .setRequired(true)
+        )
+        .addStringOption((option) =>
+          option
+            .setName('song_id')
+            .setDescription('id of song to be removed')
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('view')
+        .setDescription('view a saved playlist')
+        .addStringOption((option) =>
+          option
+            .setName('name')
+            .setDescription('name of playlist to be viewed')
+            .setRequired(true)
+        )
     ),
 
   // {

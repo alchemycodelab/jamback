@@ -8,7 +8,7 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('Song.findByTitle should return an array of songs with title roughly matching parameter', async () => {
+  it('Song.getByTitle should return an array of songs with title roughly matching parameter', async () => {
     const result = await SearchResult.insert({
       title: 'Autoclave',
       author: 'the Mountain Goats',
