@@ -71,6 +71,8 @@ client.once('ready', () => {
 // Here we send voice data to lavalink whenever the bot joins a voice channel to play audio in the channel.
 client.on('raw', (d) => client.manager.updateVoiceState(d));
 
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
@@ -84,6 +86,48 @@ client.on('interactionCreate', async (interaction) => {
     case 'playlist':
       await playlist(client, interaction);
       break;
+    case 'test':
+    {
+      const results = ['result 1', 'result 2', 'result 3'];
+      let index = 0;
+
+      const row = new ActionRowBuilder()
+        .addComponents(
+          new ButtonBuilder()
+            .setCustomId('previous')
+            .setLabel('Previous')
+            .setStyle(ButtonStyle.Secondary),
+          new ButtonBuilder()
+            .setCustomId('play')
+            .setLabel('Play')
+            .setStyle(ButtonStyle.Primary),
+          new ButtonBuilder()
+            .setCustomId('save')
+            .setLabel('Save')
+            .setStyle(ButtonStyle.Primary),
+          new ButtonBuilder()
+            .setCustomId('next')
+            .setLabel('Next')
+            .setStyle(ButtonStyle.Secondary),
+        );
+
+      const interactionResponse = await interaction.reply({ content: results[index], components: [row], ephemeral: true });
+
+      // Collect a message component interaction
+      const collector = interactionResponse.createMessageComponentCollector({
+        filter: (x) => x.isButton(),
+        idle: 10_000
+      });
+      collector.on('collect', interaction => {
+        collector.resetTimer();
+        interaction.update(String(++index));
+      });
+      collector.on('end', () => {
+        interactionResponse.interaction.editReply({ components: [] });
+      });
+
+      break;
+    }
   }
 });
 
