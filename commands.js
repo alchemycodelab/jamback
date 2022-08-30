@@ -26,7 +26,16 @@ const commands = [
             .setDescription('song title')
             .setRequired(true)
         )
-    ),
+    )
+    .addSubcommand((subcommand) => 
+      subcommand
+        .setName('playlist')
+        .setDescription('plays a playlist')
+        .addStringOption((option) => 
+          option
+            .setName('name')
+            .setDescription('name of the playlist')
+            .setRequired(true))),
   new SlashCommandBuilder()
     .setName('search')
     .setDescription('Searches for your song and gives the list of results')
