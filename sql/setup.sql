@@ -13,7 +13,7 @@ CREATE TABLE songs (
   title VARCHAR NOT NULL,
   author VARCHAR NOT NULL,
   uri VARCHAR NOT NULL,
-  data VARCHAR
+  data VARCHAR NOT NULL
 );
 
 CREATE TABLE playlists_songs (
@@ -28,13 +28,13 @@ INSERT INTO playlists (name) VALUES
 ('Sunshine Mix'), 
 ('Rainy Mix');
 
-INSERT INTO songs (title, author, uri) VALUES
-('Good Times', 'Jungle', 'https://www.youtube.com/watch?v=gpwYTeRSgc8'),
-('Oooh Child', 'The Five Stairsteps', 'https://www.youtube.com/watch?v=dguz0IsCuKU'),
-('Monday Morning', 'Death Cab For Cutie', 'https://www.youtube.com/watch?v=FlyztL4o1lc'),
-('Esmerelda', 'Ben Howard', 'https://www.youtube.com/watch?v=UYUKsRL-YBM'),
-('Naked As We Came', 'Iron & Wine', 'https://www.youtube.com/watch?v=Nd-A-iiPoLg'),
-('Little Lights', 'Punch Brothers','https://www.youtube.com/watch?v=WyVgR8N7JcE');
+INSERT INTO songs (title, author, uri, data) VALUES
+('Good Times', 'Jungle', 'https://www.youtube.com/watch?v=gpwYTeRSgc8', ''),
+('Oooh Child', 'The Five Stairsteps', 'https://www.youtube.com/watch?v=dguz0IsCuKU', ''),
+('Monday Morning', 'Death Cab For Cutie', 'https://www.youtube.com/watch?v=FlyztL4o1lc', ''),
+('Esmerelda', 'Ben Howard', 'https://www.youtube.com/watch?v=UYUKsRL-YBM', ''),
+('Naked As We Came', 'Iron & Wine', 'https://www.youtube.com/watch?v=Nd-A-iiPoLg', ''),
+('Little Lights', 'Punch Brothers','https://www.youtube.com/watch?v=WyVgR8N7JcE', '');
 
 INSERT INTO playlists_songs (playlist_id, song_id) VALUES
 (1, 1),

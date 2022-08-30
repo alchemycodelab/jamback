@@ -44,6 +44,7 @@ describe('backend-express-template routes', () => {
       title: 'Good Times',
       author: expect.any(String),
       uri: expect.any(String),
+      data: expect.any(String)
     });
   });
   afterAll(() => {
