@@ -3,15 +3,6 @@ const { REST, Routes, SlashCommandBuilder } = require('discord.js');
 
 const commands = [
   new SlashCommandBuilder()
-    .setName('test')
-    .setDescription('Searches for your song and gives the list of results')
-    .addStringOption((option) =>
-      option
-        .setName('query')
-        .setDescription('song Title and/or Artist')
-        .setRequired(true)
-    ),
-  new SlashCommandBuilder()
     .setName('play')
     .setDescription('plays a song')
     .addSubcommand((subcommand) =>
