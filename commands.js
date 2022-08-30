@@ -1,7 +1,5 @@
-const { SlashCommandBuilder } = require('discord.js');
-
 /* eslint-disable no-console */
-const { REST, Routes } = require('discord.js');
+const { REST, Routes, SlashCommandBuilder } = require('discord.js');
 
 const commands = [
   new SlashCommandBuilder()
@@ -107,12 +105,7 @@ const commands = [
             .setDescription('name of playlist to be viewed')
             .setRequired(true)
         )
-    ),
-
-  // {
-  //   name: 'myplay',
-  //   description: 'Searches through JamBots internal database to play your song',
-  // },
+    )
 ];
 
 const rest = new REST({ version: '10' }).setToken(
