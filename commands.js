@@ -7,23 +7,12 @@ const commands = [
     .setDescription('plays a song')
     .addSubcommand((subcommand) =>
       subcommand
-        .setName('search')
+        .setName('lucky')
         .setDescription('searches for a song and plays the first result')
         .addStringOption((option) =>
           option
             .setName('query')
             .setDescription('Song Title and/or Artist')
-            .setRequired(true)
-        )
-    )
-    .addSubcommand((subcommand) =>
-      subcommand
-        .setName('result')
-        .setDescription('plays a song from a search result by id')
-        .addStringOption((option) =>
-          option
-            .setName('id')
-            .setDescription('id from a previous search result')
             .setRequired(true)
         )
     ),
@@ -105,7 +94,7 @@ const commands = [
             .setDescription('name of playlist to be viewed')
             .setRequired(true)
         )
-    )
+    ),
 ];
 
 const rest = new REST({ version: '10' }).setToken(
