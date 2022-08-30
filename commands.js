@@ -106,6 +106,15 @@ const commands = [
             .setRequired(true)
         )
     ),
+    
+  new SlashCommandBuilder()
+    .setName('queue')
+    .setDescription('interact with the queue')
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('clear')
+        .setDescription('clear the queue')
+    )
 ];
 
 const rest = new REST({ version: '10' }).setToken(

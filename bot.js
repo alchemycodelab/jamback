@@ -4,6 +4,7 @@ const { Manager } = require('erela.js');
 const play = require('./lib/commands/play');
 const search = require('./lib/commands/search');
 const playlist = require('./lib/commands/playlist');
+const queue = require('./lib/commands/queue');
 
 if (!process.env.DISCORD_BOT_TOKEN) {
   console.log('Please remember to add your token to the .env file');
@@ -76,13 +77,16 @@ client.on('interactionCreate', async (interaction) => {
 
   switch (interaction.commandName) {
     case 'play':
-      await play(client, interaction);
+      play(client, interaction);
       break;
     case 'search':
-      await search(client, interaction);
+      search(client, interaction);
       break;
     case 'playlist':
-      await playlist(client, interaction);
+      playlist(client, interaction);
+      break;
+    case 'queue':
+      queue(client, interaction);
       break;
   }
 });
