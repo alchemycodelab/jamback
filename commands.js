@@ -106,7 +106,6 @@ const commands = [
             .setRequired(true)
         )
     ),
-    
   new SlashCommandBuilder()
     .setName('queue')
     .setDescription('interact with the queue')
@@ -114,6 +113,21 @@ const commands = [
       subcommand
         .setName('clear')
         .setDescription('clear the queue')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('pause')
+        .setDescription('pauses current song')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('play')
+        .setDescription('resumes playback')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('skip')
+        .setDescription('skips the current song')
     )
 ];
 
