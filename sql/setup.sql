@@ -1,7 +1,7 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
 
-DROP TABLE IF EXISTS playlists_songs, playlists, songs, search_results  CASCADE;
+DROP TABLE IF EXISTS playlists_songs, playlists, songs  CASCADE;
 
 CREATE TABLE playlists (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -21,13 +21,6 @@ CREATE TABLE playlists_songs (
     song_id BIGINT,
     FOREIGN KEY (playlist_id) REFERENCES playlists(id) ON DELETE CASCADE,
     FOREIGN KEY(song_id) REFERENCES songs(id) ON DELETE CASCADE
-);
-
-CREATE TABLE search_results (
-  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  title VARCHAR NOT NULL,
-  author VARCHAR NOT NULL,
-  uri VARCHAR NOT NULL
 );
 
 INSERT INTO playlists (name) VALUES
