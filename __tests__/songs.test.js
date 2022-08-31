@@ -43,6 +43,18 @@ describe('backend-express-template routes', () => {
       data: expect.any(String)
     });
   });
+  it('deleteByTitle should remove a song', async () => {
+    const del = await Song.deleteById('1');
+    expect(del).toEqual({
+      id: '1',
+      title: 'Good Times',
+      author: 'Jungle',
+      uri: expect.any(String),
+      data: expect.any(String)
+    });
+
+    expect(await Song.getById(1)).toEqual(null);
+  });
   afterAll(() => {
     pool.end();
   });
