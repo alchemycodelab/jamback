@@ -44,9 +44,7 @@ client.manager.on('nodeConnect', (node) =>
 );
 
 client.manager.on('nodeError', (node, error) =>
-  console.log(
-    `Node ${node.options.identifier} had an error: ${error.message}`
-  )
+  console.log(`Node ${node.options.identifier} had an error: ${error.message}`)
 );
 
 client.manager.on('trackStart', (player, track) => {
@@ -78,23 +76,23 @@ client.on('interactionCreate', async (interaction) => {
   try {
     switch (interaction.commandName) {
       case 'play':
-        play(client, interaction);
+        await play(client, interaction);
         break;
       case 'search':
-        search(client, interaction);
+        await search(client, interaction);
         break;
       case 'playlist':
-        playlist(client, interaction);
+        await playlist(client, interaction);
         break;
       case 'queue':
-        queue(client, interaction);
+        await queue(client, interaction);
         break;
     }
   } catch (error) {
     console.error(error);
     interaction.reply({
       content: 'An unexpected error occurred. Please try again.',
-      ephemeral: true
+      ephemeral: true,
     });
   }
 });

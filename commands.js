@@ -21,21 +21,20 @@ const commands = [
         .setName('song')
         .setDescription('plays a song from the library')
         .addStringOption((option) =>
-          option
-            .setName('title')
-            .setDescription('song title')
-            .setRequired(true)
+          option.setName('title').setDescription('song title').setRequired(true)
         )
     )
-    .addSubcommand((subcommand) => 
+    .addSubcommand((subcommand) =>
       subcommand
         .setName('playlist')
         .setDescription('plays a playlist')
-        .addStringOption((option) => 
+        .addStringOption((option) =>
           option
             .setName('name')
             .setDescription('name of the playlist')
-            .setRequired(true))),
+            .setRequired(true)
+        )
+    ),
   new SlashCommandBuilder()
     .setName('search')
     .setDescription('Searches for your song and gives the list of results')
@@ -119,25 +118,20 @@ const commands = [
     .setName('queue')
     .setDescription('interact with the queue')
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName('clear')
-        .setDescription('clear the queue')
+      subcommand.setName('clear').setDescription('clear the queue')
     )
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName('pause')
-        .setDescription('pauses current song')
+      subcommand.setName('pause').setDescription('pauses current song')
     )
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName('play')
-        .setDescription('resumes playback')
+      subcommand.setName('play').setDescription('resumes playback')
     )
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName('skip')
-        .setDescription('skips the current song')
+      subcommand.setName('skip').setDescription('skips the current song')
     )
+    .addSubcommand((subcommand) =>
+      subcommand.setName('shuffle').setDescription('shuffles queue')
+    ),
 ];
 
 const rest = new REST({ version: '10' }).setToken(
