@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: node -v
       - run: npm -v
-      - run: npm ci --dev
+      - run: npm ci --include=dev
       - run: npx eslint .
       - run: npm test
         env:
