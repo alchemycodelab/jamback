@@ -26,9 +26,10 @@ describe('backend-express-template routes', () => {
       uri: 'youtube.com/asong',
     };
 
-    const songs = await Song.insert(newSong);
+    const songs = await Song.insert('', newSong);
     expect(songs).toEqual({
       id: expect.any(String),
+      data: expect.any(String),
       ...newSong,
     });
   });
@@ -39,6 +40,7 @@ describe('backend-express-template routes', () => {
       title: expect.any(String),
       author: expect.any(String),
       uri: expect.any(String),
+      data: expect.any(String)
     });
   });
   afterAll(() => {

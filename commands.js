@@ -21,9 +21,17 @@ const commands = [
         .setName('song')
         .setDescription('plays a song from the library')
         .addStringOption((option) =>
+          option.setName('title').setDescription('song title').setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('playlist')
+        .setDescription('plays a playlist')
+        .addStringOption((option) =>
           option
-            .setName('title')
-            .setDescription('song title')
+            .setName('name')
+            .setDescription('name of the playlist')
             .setRequired(true)
         )
     ),
@@ -106,6 +114,29 @@ const commands = [
             .setRequired(true)
         )
     ),
+  new SlashCommandBuilder()
+    .setName('queue')
+    .setDescription('interact with the queue')
+    .addSubcommand((subcommand) =>
+      subcommand.setName('clear').setDescription('clear the queue')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand.setName('pause').setDescription('pauses current song')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand.setName('play').setDescription('resumes playback')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand.setName('skip').setDescription('skips the current song')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand.setName('shuffle').setDescription('shuffles queue')
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('view')
+        .setDescription('displays the current queue')
+    )
 ];
 
 const rest = new REST({ version: '10' }).setToken(

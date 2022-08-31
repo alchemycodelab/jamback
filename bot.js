@@ -4,6 +4,7 @@ const { Manager } = require('erela.js');
 const play = require('./lib/commands/play');
 const search = require('./lib/commands/search');
 const playlist = require('./lib/commands/playlist');
+const queue = require('./lib/commands/queue');
 
 if (!process.env.DISCORD_BOT_TOKEN) {
   console.log('Please remember to add your token to the .env file');
@@ -43,9 +44,7 @@ client.manager.on('nodeConnect', (node) =>
 );
 
 client.manager.on('nodeError', (node, error) =>
-  console.log(
-    `Node ${node.options.identifier} had an error: ${error.message}`
-  )
+  console.log(`Node ${node.options.identifier} had an error: ${error.message}`)
 );
 
 client.manager.on('trackStart', (player, track) => {
@@ -74,16 +73,27 @@ client.on('raw', (d) => client.manager.updateVoiceState(d));
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  switch (interaction.commandName) {
-    case 'play':
-      await play(client, interaction);
-      break;
-    case 'search':
-      await search(client, interaction);
-      break;
-    case 'playlist':
-      await playlist(client, interaction);
-      break;
+  try {
+    switch (interaction.commandName) {
+      case 'play':
+        await play(client, interaction);
+        break;
+      case 'search':
+        await search(client, interaction);
+        break;
+      case 'playlist':
+        await playlist(client, interaction);
+        break;
+      case 'queue':
+        await queue(client, interaction);
+        break;
+    }
+  } catch (error) {
+    console.error(error);
+    interaction.reply({
+      content: 'An unexpected error occurred. Please try again.',
+      ephemeral: true,
+    });
   }
 });
 
