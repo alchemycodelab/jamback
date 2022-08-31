@@ -131,7 +131,12 @@ const commands = [
     )
     .addSubcommand((subcommand) =>
       subcommand.setName('shuffle').setDescription('shuffles queue')
-    ),
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName('view')
+        .setDescription('displays the current queue')
+    )
 ];
 
 const rest = new REST({ version: '10' }).setToken(
