@@ -135,9 +135,7 @@ const queueCommand = new SlashCommandBuilder()
     subcommand.setName('shuffle').setDescription('shuffles queue')
   )
   .addSubcommand((subcommand) =>
-    subcommand
-      .setName('view')
-      .setDescription('displays the current queue')
+    subcommand.setName('view').setDescription('displays the current queue')
   );
 
 const libraryCommand = new SlashCommandBuilder()
@@ -153,6 +151,9 @@ const libraryCommand = new SlashCommandBuilder()
           .setDescription('song title and/or artist')
           .setRequired(true)
       )
+  )
+  .addSubcommand((subcommand) =>
+    subcommand.setName('view').setDescription('view all songs in library')
   );
 
 const commands = [
@@ -160,7 +161,7 @@ const commands = [
   searchCommand,
   playlistCommand,
   queueCommand,
-  libraryCommand
+  libraryCommand,
 ];
 
 const rest = new REST({ version: '10' }).setToken(

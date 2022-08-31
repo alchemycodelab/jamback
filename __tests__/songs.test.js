@@ -40,7 +40,7 @@ describe('backend-express-template routes', () => {
       title: expect.any(String),
       author: expect.any(String),
       uri: expect.any(String),
-      data: expect.any(String)
+      data: expect.any(String),
     });
   });
   it('deleteByTitle should remove a song', async () => {
@@ -50,10 +50,15 @@ describe('backend-express-template routes', () => {
       title: 'Good Times',
       author: 'Jungle',
       uri: expect.any(String),
-      data: expect.any(String)
+      data: expect.any(String),
     });
 
     expect(await Song.getById(1)).toEqual(null);
+  });
+  it('getAll returns list of all songs in library', async () => {
+    const songs = await Song.getAll();
+    expect(songs).toBeInstanceOf(Array);
+    expect(songs.length).toBe(6);
   });
   afterAll(() => {
     pool.end();
