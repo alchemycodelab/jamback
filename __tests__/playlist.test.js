@@ -47,6 +47,15 @@ describe('backend-express-template routes', () => {
       data: expect.any(String)
     });
   });
+  it('Playlist.getAll() should get all playlists', async () => {
+    const playlists = await Playlist.getAll();
+    expect(playlists).toBeInstanceOf(Array);
+    expect(playlists[0]).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+      songs: expect.any(Array),
+    });
+  });
   afterAll(() => {
     pool.end();
   });
