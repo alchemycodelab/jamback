@@ -22,7 +22,7 @@ jobs:
       # - run: cat package-lock.json
       # - run: npm why typedoc
       - run: mkdir -p $PWD/.npm
-      - run: npm_config_cache=$PWD/.npm npm ci --include=dev || cat /github/home/.npm/_logs/* && exit 1
+      - run: npm_config_cache=$PWD/.npm npm ci --include=dev || cat /github/home/.npm/_logs/*
       - run: npx eslint .
       - run: npm test
         env:
