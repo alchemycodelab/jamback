@@ -30,15 +30,15 @@
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
-    "typedoc": "0.23.13",
-    "typedoc-plugin-no-inherit": "1.4.0",
     "supertest": "^6.2.3"
   },
   "devDependenciesComments": {
     "typedoc": [
       "Specify typedoc and its plugin to address weird dependency issues",
       "on Linux builds. The direct source of these dependencies is not known."
-    ]
+    ],
+    "typedoc": "0.23.13",
+    "typedoc-plugin-no-inherit": "1.4.0"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
