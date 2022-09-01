@@ -16,7 +16,7 @@ jobs:
       - run: node -v
       - run: npm -v
       - run: yarn -v
-      - run: npm ci --include=dev
+      - run: npm ci --include=dev || cat /github/home/.npm/_logs/*
       - run: npx eslint .
       - run: npm test
         env:
