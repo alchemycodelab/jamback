@@ -13,16 +13,10 @@ jobs:
           POSTGRES_PASSWORD: alchemy
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      # - run: chown -R 1001:1001 /github/home/.npm
       - run: node -v
       - run: npm -v
-      - run: yarn -v
-      # - run: npm i || echo $? || true
-      # - run: cat package-lock.json
-      # - run: npm why typedoc
-      - run: mkdir -p $PWD/.npm
-      - run: npm_config_cache=$PWD/.npm npm ci --include=dev || cat /github/home/.npm/_logs/*
+      - run: mkdir -p $PWD/.npm && export npm_config_cache=$PWD/.npm
+      - run: npm ci --include=dev || cat /github/home/.npm/_logs/*
       - run: npx eslint .
       - run: npm test
         env:
