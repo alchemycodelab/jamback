@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: chown -R $USER:$USER $HOME/.npm
+      - run: chown -R 1001:1001 /github/home/.npm
       - run: node -v
       - run: npm -v
       - run: yarn -v
