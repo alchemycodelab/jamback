@@ -19,7 +19,7 @@ jobs:
       # - run: npm i || echo $? || true
       # - run: cat package-lock.json
       # - run: npm why typedoc
-      - run: npm ci --include=dev || cat /github/home/.npm/_logs/*
+      - run: sudo npm ci --include=dev || cat /github/home/.npm/_logs/*
       - run: npx eslint .
       - run: npm test
         env:
